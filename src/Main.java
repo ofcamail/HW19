@@ -71,11 +71,10 @@ public class Main  {
         Scanner yearScanner = new Scanner(System.in);
         System.out.println("Enter the year");
         int yearForCheck = yearScanner.nextInt();
-        boolean isLeapYear = ((yearForCheck % 4 == 0) && (yearForCheck % 100 != 0) || (yearForCheck % 400 == 0));
-        Predicate<Boolean> isLeap = x -> isLeapYear;
-        Function<Boolean, String> leap = x -> isLeapYear + " високосный год";
-        Function<Boolean, String> noLeap = x -> isLeapYear + " не високосный год";
-        System.out.println(ternaryOperator(isLeap, leap, noLeap).apply(isLeapYear));
+        Predicate<Integer> isLeap = x -> ((yearForCheck % 4 == 0) && (yearForCheck % 100 != 0) || (yearForCheck % 400 == 0));
+        Function<Integer, String> leap = x -> x + " високосный год";
+        Function<Integer, String> noLeap = x -> x + " не високосный год";
+        System.out.println(ternaryOperator(isLeap, leap, noLeap).apply(yearForCheck));
     }
 
     public static <T, U> Function<T, U> ternaryOperator(
